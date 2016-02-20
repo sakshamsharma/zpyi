@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Zpyi by sakshamsharma</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Zpyi</h1>
+        <h2>The power of python in your Zsh</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/sakshamsharma/Zpyi/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/sakshamsharma/Zpyi/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/sakshamsharma/Zpyi" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="zpyi" class="anchor" href="#zpyi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>zpyi</h1>
+
+<p>zpyi makes your shell smarter, in more ways than one. It's no magic, it's python.</p>
+
+<pre><code>                    _ 
+                   (_)
+ ____ _ __   _   _  _ 
+|_  /| '_ \ | | | || |
+ / / | |_) || |_| || |
+/___|| .__/  \__, ||_|
+     | |      __/ |   
+     |_|     |___/    
+</code></pre>
+
+<p>Your shell now falls back to python if some command couldn't be handled by zsh.
+So you can now do <code>2+3</code> directly in your shell. Well, something much more complex than that.</p>
+
+<p>Of course, I did not want to break any existing functionality provided by Zsh and configured by me.
+This prompted the need to use <code>'2**107'</code> instead of <code>2**107</code> to evaluate 2 to the exponent of 107.
+Otherwise there would have been conflicts with the wildcard syntax of Zsh.</p>
+
+<p>Oh, and I imported math library already.</p>
+
+<p>There are of course options. You can use your shell within python, but be ready to give up the awesome tab
+completion and prompts, and various other plugins available with Zsh.</p>
+
+<h1>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h1>
+
+<p>These things should now work in your shell.</p>
+
+<ul>
+<li><code>2+4</code></li>
+<li><code>'2**107'</code></li>
+<li><code>'pow(10, 5)'</code></li>
+<li><code>'sqrt(5)'</code></li>
+</ul>
+
+<h1>
+<a id="the-awesome-eix-fall-back" class="anchor" href="#the-awesome-eix-fall-back" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The awesome eix fall-back</h1>
+
+<p>Interestingly, Zpyi will also search for a package similar to the erroneous command you just entered.
+For example, I type <code>lisp</code>. I don't know what package it is in. Zpyi will see that running <code>eix</code> (Gentoo only) helps in this
+and there is some output. It'll display that output and I'd know that there is a package called <code>commonlisp</code>.</p>
+
+<h1>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing?</h1>
+
+<p>Still TODO</p>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h1>
+
+<ul>
+<li>The above section ?</li>
+<li>Add support for other distros</li>
+<li>Allow running a python daemon to support many more commands.</li>
+<li>Allow dynamic loading of modules.</li>
+<li>Add runtime flags.</li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
