@@ -3,6 +3,17 @@ zpyi
 
 zpyi makes your shell smarter, in more ways than one. It's no magic, it's python.
 
+```
+                    _ 
+                   (_)
+ ____ _ __   _   _  _ 
+|_  /| '_ \ | | | || |
+ / / | |_) || |_| || |
+/___|| .__/  \__, ||_|
+     | |      __/ |   
+     |_|     |___/    
+```
+
 Your shell now falls back to python if some command couldn't be handled by zsh.
 So you can now do `2+3` directly in your shell. Well, something much more complex than that.
 
