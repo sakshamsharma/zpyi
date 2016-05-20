@@ -6,6 +6,7 @@
 ###########################################
 
 import sys
+from math import *
 
 try:
     if sys.version_info[0] < 3:
