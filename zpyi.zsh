@@ -7,7 +7,7 @@
 
 command_not_found_handler() {
   ei=$(~/.zpyi/package_search_command.zsh "$1" | grep '^No\ matches\ found\.$')
-  if [ -z "$ei" ]
+  if [ "$ei" != "" ]
   then
     echo "Command not found. Searching for package using your distro's package list..."
     ~/.zpyi/package_search_command.zsh "$1"
