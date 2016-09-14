@@ -2,20 +2,38 @@
 # Python script for zpyi                  #
 # Original Author:                        #
 # Saksham Sharma (sakshamsharma)          #
-# Email: saksham0808@gmail.com            #
+# Email: saksham@acehack.org              #
 ###########################################
 
 import sys
 from math import *
 
-try:
-    if sys.version_info[0] < 3:
-        print (input())
-    else:
-        x = input()
-        print (eval(x))
+def cleanup():
+    try:
+        os.unlink(sys.argv[1])
+    except:
+        pass
 
-    sys.exit(0)
+with open(sys.argv[1]) as fifo:
+    codestr = fifo.readlines()
+
+code = ([ i.strip() for i in codestr if i ])
+
+# Use try catch to return only after cleanup
+try:
+    if len(code) == 1:
+        # Commands like:
+        # '1+2'
+        # Also should display output
+        print (eval(code[0]))
+    else:
+        # Bigger commands
+        # 'a = 2
+        #  print a'
+        exec("\n".join(code))
 
 except Exception as e:
-    sys.exit(102)
+    print("Python statement invalid:\n" + e)
+
+cleanup()
+sys.exit(0)
