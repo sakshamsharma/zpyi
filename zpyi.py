@@ -33,8 +33,10 @@ try:
         #  print a'
         exec("\n".join(code))
 
-except Exception as e:
-    print("Python statement invalid:\n" + e)
+except Exception as error:
+    print ("Python statement invalid: ")
+    print (error.__doc__)
+    print ("{}".format(error))
 
 cleanup()
 sys.exit(0)
