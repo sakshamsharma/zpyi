@@ -51,6 +51,16 @@ These things should now work in your shell.
 
 Also, *any* other python program using `os`, `math` or `sys` libraries, be it single line or multi line.
 
+Also, you can be writing a shell script (remember to use `/bin/zsh` for now), and suddenly be confused about some array manipulation (or something else meaninglessly complicated in shell). With `zpyi` in place, all you have to do is pass the variable to be modified/parsed to python.
+```
+source ~/.zshrc
+myname=$(whoami)
+"
+print (\"$myname\".upper())
+"
+```
+Run this file with a plain `zsh script.sh`! This is a very simple example, and it is possible to create many interesting combinations of shell and python this way.
+
 # Installing?
 The installation script is concise enough:
 ```
