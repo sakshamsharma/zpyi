@@ -18,7 +18,7 @@ def cleanup():
 with open(sys.argv[1]) as fifo:
     codestr = fifo.readlines()
 
-code = ([ i.strip() for i in codestr if i ])
+code = ([ i.strip() for i in codestr if i.strip() ])
 
 # Use try catch to return only after cleanup
 try:

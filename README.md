@@ -56,10 +56,12 @@ Also, you can be writing a shell script (remember to use `/bin/zsh` for now), an
 source ~/.zshrc
 myname=$(whoami)
 "
-print (\"$myname\".upper())
+'$(whoami)'.upper()
 "
 ```
 Run this file with a plain `zsh script.sh`! This is a very simple example, and it is possible to create many interesting combinations of shell and python this way.
+
+*Note* A simple oneliner for the above would be `"'$(whoami)'.upper()"`
 
 # Installing?
 The installation script is concise enough:
