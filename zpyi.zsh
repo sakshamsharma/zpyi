@@ -6,16 +6,18 @@
 ###########################################
 
 command_not_found_handler() {
+    INPUT_PIPE=$HOME/.inf
+
     # Remove any remaining commands
-    rm -f ~/.inf
+    rm -f $INPUT_PIPE
 
     # New fifo pipe
-    mkfifo ~/.inf
+    mkfifo $INPUT_PIPE
 
     # Need to put to background
-    echo -e "$1" > ~/.inf&
+    echo -e "$1" > $INPUT_PIPE &
 
-    python ~/.zpyi/zpyi.py ~/.inf
+    python ~/.zpyi/zpyi.py $INPUT_PIPE
 
     # Optionally uncomment the below lines if
     # you do not use python so often

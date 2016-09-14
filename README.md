@@ -17,7 +17,7 @@ zpyi makes your shell smarter, in more ways than one. It's no magic, it's python
 Your shell now falls back to python if some command couldn't be handled by zsh.
 So you can now do `2+3` directly in your shell. Well, something much more complex than that too.
 
-Here's an example:
+Here's an example, try typing this in your shell after sourcing `zpyi` (Note the single quotes around the code):
 ```
 '
 a = 1
