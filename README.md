@@ -38,10 +38,9 @@ In short, you can assume that any command beginning with a single quote (and end
 
 ```
 'sqrt(2**10)' > outputfile
-cat outputfile
 ```
 
-So now you don't need to run `python -c 'print(sqrt(2**10))' >> outputfile`, only to remember that it won't work because `math` is not imported while using `python -c`.
+So now you don't need to run `python -c 'print(sqrt(2**10))' > outputfile`, only to remember that it won't work because `math` is not imported while using `python -c`.
 
 # Examples
 These things should now work in your shell.
@@ -49,6 +48,7 @@ These things should now work in your shell.
 * `'2**107'`
 * `'pow(10, 5)'`
 * `'sqrt(5)'`
+
 Also, *any* other python program using `os`, `math` or `sys` libraries, be it single line or multi line.
 
 # Installing?
