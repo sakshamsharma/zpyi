@@ -56,10 +56,11 @@ Also, you can be writing a shell script (remember to use `/bin/zsh` for now), an
 source ~/.zshrc
 myname=$(whoami)
 "
-'$(whoami)'.upper()
+print ('${myname}'.upper())
+print ('$(whoami)'.upper())
 "
 ```
-Run this file with a plain `zsh script.sh`! This is a very simple example, and it is possible to create many interesting combinations of shell and python this way.
+Run this file with a plain `zsh script.sh`! This is a very simple example of mixing python, shell variables, and shell commands, and it is possible to create many interesting combinations of shell and python this way.
 
 *Note* A simple oneliner for the above would be `"'$(whoami)'.upper()"`
 
