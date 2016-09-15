@@ -77,5 +77,10 @@ If you feel lazy, this works too:
 curl https://raw.githubusercontent.com/sakshamsharma/zpyi/master/install_script.sh | bash
 ```
 
+Or if you make use of [antigen](https://github.com/zsh-users/antigen) (and if you don't you should check it out it's awesome)
+```
+antigen bundle https://github.com/peteches/zpyi zpyi.zsh
+```
+
 # TODO
 * Add support for querying for missing packages
