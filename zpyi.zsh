@@ -17,7 +17,22 @@ command_not_found_handler() {
     # Need to put to background
     echo -e "$1" > $INPUT_PIPE &
 
-    python ~/.zpyi/zpyi.py $INPUT_PIPE
+    # Arcane zsh invokation alert
+    #
+    # ${(%):-%x} below will
+    # be interpolated as
+    # the absolute path to the file
+    # this line is written in.
+
+    # see man zshmisc for this and other
+    # sanity testing obscure zsh magic
+
+    # This allows the zpyi repo to be checked out
+    # and sourced from anywhere in the filesystem
+    # and still work.
+    zpyi_dir=$(dirname ${(%):-%x})
+
+    python ${zpyi_dir}/zpyi.py $INPUT_PIPE
 
     # Optionally uncomment the below lines if
     # you do not use python so often
