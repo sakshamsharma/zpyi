@@ -15,14 +15,24 @@ def cleanup():
     except:
         pass
 
+args = []
+
 with open(sys.argv[1]) as fifo:
     codestr = fifo.readlines()
+
+if len(sys.argv) > 2:
+    with open(sys.argv[2]) as argfile:
+        args = argfile.readlines()
+
+# Use arguments to automate script even better
+for i in range(0, len(args)):
+    sys.argv[i+1] = args[i]
 
 code = ([ i.strip() for i in codestr if i.strip() ])
 
 # Use try catch to return only after cleanup
 try:
-    if len(code) == 1:
+    if len(code) == 1 and not code[0].startswith('print'):
         # Commands like:
         # '1+2'
         # Also should display output
