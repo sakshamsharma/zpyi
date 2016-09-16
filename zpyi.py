@@ -9,6 +9,11 @@ import sys
 import os
 from math import *
 
+if 'ZPYI_IMPORTS' in os.environ:
+    for module in os.environ['ZPYI_IMPORTS'].split(','):
+        _module = __import__(module, globals(), locals())
+        globals().update(_module.__dict__)
+
 def cleanup():
     try:
         os.unlink(sys.argv[1])
