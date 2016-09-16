@@ -51,7 +51,7 @@ These things should now work in your shell.
 
 Also, *any* other python program using `os`, `math` or `sys` libraries, be it single line or multi line.
 
-Also, you can be writing a shell script (remember to use `/bin/zsh` for now), and suddenly be confused about some array manipulation (or something else meaninglessly complicated in shell). With `zpyi` in place, all you have to do is pass the variable to be modified/parsed to python.
+Also, you can be writing a shell script (remember to source your `zshrc`), and suddenly be confused about some array manipulation (or something else meaninglessly complicated in shell). With `zpyi` in place, all you have to do is pass the variable to be modified/parsed to python.
 ```
 source ~/.zshrc
 myname=$(whoami)
@@ -77,7 +77,7 @@ If you feel lazy, this works too:
 curl https://raw.githubusercontent.com/sakshamsharma/zpyi/master/install_script.sh | bash
 ```
 
-Or if you make use of [antigen](https://github.com/zsh-users/antigen) 
+Or if you make use of [antigen](https://github.com/zsh-users/antigen) (which is probably a good idea):
 ```
 antigen bundle https://github.com/sakshamsharma/zpyi zpyi.zsh
 ```
