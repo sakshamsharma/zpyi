@@ -17,7 +17,20 @@ zpyi makes your shell smarter, in more ways than one. It's no magic, it's python
 Your shell now falls back to python if some command couldn't be handled by zsh.
 So you can now do `2+3` directly in your shell. Well, something much more complex than that too.
 
-Here's an example, try typing this in your shell after sourcing `zpyi` (Note the single quotes around the code):
+Of course, you would not want to break any existing functionality provided by Zsh.
+This prompted the need to use `'2**107'` instead of `2**107` to evaluate 2 to the exponent of 107.
+Otherwise there would have been conflicts with the wildcard syntax of Zsh.
+
+You can assume that anything written at the start of a shell command, within single or double quotes would be interpreted as a python script.
+
+# Examples
+Here are some cool things you can now do. Note that all the code blocks below are to be run in the shell itself! No need to write python scripts to do small one-time stuff. And all this stays in your shell history! No need to store your small scripts too.
+
+#### Cool One liners
+* `'2**107'`
+* `'sqrt(10)'`
+* `'"user".upper()'`
+* Multiline code!
 ```
 '
 a = 1
@@ -26,43 +39,53 @@ c = a + b
 print (c*2)
 '
 ```
-And this actually works! Output: `324518553658426726783156020576258` (you can check it, it IS right :smile: )
 
-Of course, you would not want to break any existing functionality provided by Zsh.
-This prompted the need to use `'2**107'` instead of `2**107` to evaluate 2 to the exponent of 107.
-Otherwise there would have been conflicts with the wildcard syntax of Zsh.
+#### Use shell commands and env vars inside python code
+* `"print ('$(whoami)'.upper())"`
+* `export myname="me"; "print ('$myname is nice')"`
 
-Oh, and I imported `math` library already. You can directly call functions from the `math` library.
-
-In short, you can assume that any command beginning with a single quote (and ending too) would be evaluated by python. You now have your Python history (for short commands) right in your shell! Even more useful is this:
-
+#### Pass stuff to python script using stdin
 ```
-'sqrt(2**10)' > outputfile
+cat /etc/passwd | '
+lines = sys.stdin.readlines()
+
+for line in lines:
+    print line.upper()
+'
+```
+
+#### Stdin and Stdout redirection
+* `'print (input().upper())' < infile > outfile`
+* `echo "what, my name is shady" | 'print (input().upper())'`
+
+#### Command line parameters
+Yes, they work too, using either the `sys.argv` or `argv` to refer to the 1 based indexing.
+There is also an array named `args` which has the args in 0 based indexing
+
+* `'print (str(int(sys.argv[1]) + int(sys.argv[2])))' 2 3` returns 5
+* `'print (str(int(args[0]) + int(args[1])))' 2 3` returns 5 too
+
+#### Imports!
+The modules `math`, `sys` and `os` are already imported!
+
+In addition, you can define an environment variable to use any custom imports, thanks to @orf for the PR on this!
+```
+# This is a shell command, run in your shell
+export ZPYI_IMPORTS=requests
+
+# This is the python line you run
+"get('http://google.com')"
 ```
 
 So now you don't need to run `python -c 'print(sqrt(2**10))' > outputfile`, only to remember that it won't work because `math` is not imported while using `python -c`.
 
-# Examples
-These things should now work in your shell.
-* `2+4`
-* `'2**107'`
-* `'pow(10, 5)'`
-* `'sqrt(5)'`
-
-Also, *any* other python program using `os`, `math` or `sys` libraries, be it single line or multi line.
-
-Also, you can be writing a shell script (remember to source your `zshrc`), and suddenly be confused about some array manipulation (or something else meaninglessly complicated in shell). With `zpyi` in place, all you have to do is pass the variable to be modified/parsed to python.
+#### Write cool shell scripts
+Here's a simple zsh script to be run via `zsh script.sh`. Just that now you don't need to do complicated string parsing in shell, when you have python for that.
 ```
 source ~/.zshrc
 myname=$(whoami)
-"
-print ('${myname}'.upper())
-print ('$(whoami)'.upper())
-"
+"print ('${myname}'.upper())"
 ```
-Run this file with a plain `zsh script.sh`! This is a very simple example of mixing python, shell variables, and shell commands, and it is possible to create many interesting combinations of shell and python this way.
-
-*Note* A simple oneliner for the above would be `"'$(whoami)'.upper()"`
 
 # Installing?
 The installation script is concise enough:
