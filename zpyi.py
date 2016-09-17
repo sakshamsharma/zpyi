@@ -33,7 +33,7 @@ if len(sys.argv) > 2:
 for i in range(0, len(args)):
     sys.argv[i+1] = args[i]
 
-code = ([ i.strip() for i in codestr if i.strip() ])
+code = ([ i for i in codestr if i.strip() ])
 
 # Use try catch to return only after cleanup
 try:
