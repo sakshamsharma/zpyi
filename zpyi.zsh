@@ -6,8 +6,14 @@
 ###########################################
 
 command_not_found_handler() {
-    INPUT_PIPE=$HOME/.inf
-    ARGS_PIPE=$HOME/.zargs
+    PIPE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}
+
+    if [ ! -d  "$PIPE_DIR" ]; then
+        mkdir -p "$PIPE_DIR"
+    fi
+
+    INPUT_PIPE=$PIPE_DIR/.zpyi_in
+    ARGS_PIPE=$PIPE_DIR/.zpyi_args
 
     # Remove any remaining commands
     rm -f $INPUT_PIPE $ARGS_PIPE
