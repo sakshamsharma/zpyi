@@ -17,11 +17,14 @@ zpyi makes your shell smarter, in more ways than one. It's no magic, it's python
 Your shell now falls back to python if some command couldn't be handled by zsh.
 So you can now do `2+3` directly in your shell. Well, something much more complex than that too.
 
-Of course, you would not want to break any existing functionality provided by Zsh.
-This prompted the need to use `'2**107'` instead of `2**107` to evaluate 2 to the exponent of 107.
-Otherwise there would have been conflicts with the wildcard syntax of Zsh.
+Of course, to prevent breaking any existing functionality provided by Zsh,
+you need to use `'2**107'` instead of `2**107` and the likes. Simply enclose your python program by some unused delimiters, and you're good to go.
 
 You can assume that anything written at the start of a shell command, within single or double quotes would be interpreted as a python script.
+
+Also, now instead of piping shell output to age-old (and still awesome, don't get me wrong) programs like `awk`, `grep`, `sed`, you can **actually** pipe shell output to short Python inline scripts, just like the good old `awk` scripts.
+
+Of note, this is **not** a subset of `python -c`. `python -c` will *not* let you run python programs. It lets you run interactive python commands. Using `zpyi`, you can actually write programs and keep them in shell history, just like you've been doing with `awk` and `grep` since ages.
 
 # Examples
 Here are some cool things you can now do. Note that all the code blocks below are to be run in the shell itself! No need to write python scripts to do small one-time stuff. And all this stays in your shell history! No need to store your small scripts too.
