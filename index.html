@@ -1,97 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
+    <meta charset="UTF-8">
     <title>Zpyi by sakshamsharma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Zpyi</h1>
+      <h2 class="project-tagline">The power of python in your Zsh</h2>
+      <a href="https://github.com/sakshamsharma/zpyi" class="btn">View on GitHub</a>
+      <a href="https://github.com/sakshamsharma/zpyi/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/sakshamsharma/zpyi/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <header>
-      <div class="container">
-        <h1>Zpyi</h1>
-        <h2>The power of python in your Zsh</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/sakshamsharma/Zpyi/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/sakshamsharma/Zpyi/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/sakshamsharma/Zpyi" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="zpyi" class="anchor" href="#zpyi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>zpyi</h1>
 
 <p>zpyi makes your shell smarter, in more ways than one. It's no magic, it's python.</p>
 
-<pre><code>                    _ 
+<pre><code>                    _
                    (_)
- ____ _ __   _   _  _ 
+ ____ _ __   _   _  _
 |_  /| '_ \ | | | || |
  / / | |_) || |_| || |
 /___|| .__/  \__, ||_|
-     | |      __/ |   
-     |_|     |___/    
+     | |      __/ |
+     |_|     |___/
 </code></pre>
 
 <p>Your shell now falls back to python if some command couldn't be handled by zsh.
-So you can now do <code>2+3</code> directly in your shell. Well, something much more complex than that.</p>
+So you can now do <code>2+3</code> directly in your shell. Well, something much more complex than that too.</p>
 
-<p>Of course, I did not want to break any existing functionality provided by Zsh and configured by me.
-This prompted the need to use <code>'2**107'</code> instead of <code>2**107</code> to evaluate 2 to the exponent of 107.
-Otherwise there would have been conflicts with the wildcard syntax of Zsh.</p>
+<p>Of course, to prevent breaking any existing functionality provided by Zsh,
+you need to use <code>'2**107'</code> instead of <code>2**107</code> and the likes. Simply enclose your python program by some unused delimiters, and you're good to go.</p>
 
-<p>Oh, and I imported math library already.</p>
+<p>You can assume that anything written at the start of a shell command, within single or double quotes would be interpreted as a python script.</p>
 
-<p>There are of course options. You can use your shell within python, but be ready to give up the awesome tab
-completion and prompts, and various other plugins available with Zsh.</p>
+<p>Also, now instead of piping shell output to age-old (and still awesome, don't get me wrong) programs like <code>awk</code>, <code>grep</code>, <code>sed</code>, you can <strong>actually</strong> pipe shell output to short Python inline scripts, just like the good old <code>awk</code> scripts.</p>
+
+<p>Of note, this is <strong>not</strong> a subset of <code>python -c</code>. <code>python -c</code> will <em>not</em> let you run python programs. It lets you run interactive python commands. Using <code>zpyi</code>, you can actually write programs and keep them in shell history, just like you've been doing with <code>awk</code> and <code>grep</code> since ages.</p>
 
 <h1>
 <a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h1>
 
-<p>These things should now work in your shell.</p>
+<p>Here are some cool things you can now do. Note that all the code blocks below are to be run in the shell itself! No need to write python scripts to do small one-time stuff. And all this stays in your shell history! No need to store your small scripts too.</p>
+
+<h4>
+<a id="cool-one-liners" class="anchor" href="#cool-one-liners" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cool One liners</h4>
 
 <ul>
-<li><code>2+4</code></li>
 <li><code>'2**107'</code></li>
-<li><code>'pow(10, 5)'</code></li>
-<li><code>'sqrt(5)'</code></li>
+<li><code>'sqrt(10)'</code></li>
+<li><code>'"user".upper()'</code></li>
+<li>Multiline code!</li>
 </ul>
 
-<h1>
-<a id="the-awesome-eix-fall-back" class="anchor" href="#the-awesome-eix-fall-back" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The awesome eix fall-back</h1>
+<pre><code>'
+a = 1
+b = 2**107
+c = a + b
+print (c*2)
+'
+</code></pre>
 
-<p>Interestingly, Zpyi will also search for a package similar to the erroneous command you just entered.
-For example, I type <code>lisp</code>. I don't know what package it is in. Zpyi will see that running <code>eix</code> (Gentoo only) helps in this
-and there is some output. It'll display that output and I'd know that there is a package called <code>commonlisp</code>.</p>
+<h4>
+<a id="use-shell-commands-and-env-vars-inside-python-code" class="anchor" href="#use-shell-commands-and-env-vars-inside-python-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Use shell commands and env vars inside python code</h4>
+
+<ul>
+<li><code>"print ('$(whoami)'.upper())"</code></li>
+<li><code>export myname="me"; "print ('$myname is nice')"</code></li>
+</ul>
+
+<h4>
+<a id="pass-stuff-to-python-script-using-stdin" class="anchor" href="#pass-stuff-to-python-script-using-stdin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pass stuff to python script using stdin</h4>
+
+<pre><code>cat /etc/passwd | '
+lines = sys.stdin.readlines()
+
+for line in lines:
+    print line.upper()
+'
+</code></pre>
+
+<h4>
+<a id="stdin-and-stdout-redirection" class="anchor" href="#stdin-and-stdout-redirection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Stdin and Stdout redirection</h4>
+
+<ul>
+<li><code>'print (input().upper())' &lt; infile &gt; outfile</code></li>
+<li><code>echo "what, my name is shady" | 'print (input().upper())'</code></li>
+</ul>
+
+<h4>
+<a id="command-line-parameters" class="anchor" href="#command-line-parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Command line parameters</h4>
+
+<p>Yes, they work too, using either the <code>sys.argv</code> or <code>argv</code> to refer to the 1 based indexing.
+There is also an array named <code>args</code> which has the args in 0 based indexing</p>
+
+<ul>
+<li>
+<code>'print (str(int(sys.argv[1]) + int(sys.argv[2])))' 2 3</code> returns 5</li>
+<li>
+<code>'print (str(int(args[0]) + int(args[1])))' 2 3</code> returns 5 too</li>
+</ul>
+
+<h4>
+<a id="imports" class="anchor" href="#imports" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Imports!</h4>
+
+<p>The modules <code>math</code>, <code>sys</code> and <code>os</code> are already imported!</p>
+
+<p>In addition, you can define an environment variable to use any custom imports, thanks to <a href="https://github.com/orf" class="user-mention">@orf</a> for the PR on this!</p>
+
+<pre><code># This is a shell command, run in your shell
+export ZPYI_IMPORTS=requests
+
+# This is the python line you run
+"get('http://google.com')"
+</code></pre>
+
+<p>So now you don't need to run <code>python -c 'print(sqrt(2**10))' &gt; outputfile</code>, only to remember that it won't work because <code>math</code> is not imported while using <code>python -c</code>.</p>
+
+<h4>
+<a id="write-cool-shell-scripts" class="anchor" href="#write-cool-shell-scripts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Write cool shell scripts</h4>
+
+<p>Here's a simple zsh script to be run via <code>zsh script.sh</code>. Just that now you don't need to do complicated string parsing in shell, when you have python for that.</p>
+
+<pre><code>source ~/.zshrc
+myname=$(whoami)
+"print ('${myname}'.upper())"
+</code></pre>
 
 <h1>
 <a id="installing" class="anchor" href="#installing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing?</h1>
 
-<p>Still TODO</p>
+<p>The installation script is concise enough:</p>
+
+<pre><code>cd ~
+git clone https://github.com/sakshamsharma/zpyi ~/.zpyi
+echo "source ~/.zpyi/zpyi.zsh" &gt;&gt; ~/.zshrc
+</code></pre>
+
+<p>If you feel lazy, this works too:</p>
+
+<pre><code>curl https://raw.githubusercontent.com/sakshamsharma/zpyi/master/install_script.sh | bash
+</code></pre>
+
+<p>Or if you make use of <a href="https://github.com/zsh-users/antigen">antigen</a> (which is probably a good idea):</p>
+
+<pre><code>antigen bundle https://github.com/sakshamsharma/zpyi zpyi.zsh
+</code></pre>
 
 <h1>
 <a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h1>
 
 <ul>
-<li>The above section ?</li>
-<li>Add support for other distros</li>
-<li>Allow running a python daemon to support many more commands.</li>
-<li>Allow dynamic loading of modules.</li>
-<li>Add runtime flags.</li>
+<li>Add support for querying for missing packages</li>
 </ul>
-      </section>
-    </div>
 
-    
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/sakshamsharma/zpyi">Zpyi</a> is maintained by <a href="https://github.com/sakshamsharma">sakshamsharma</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
