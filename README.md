@@ -108,5 +108,11 @@ Or if you make use of [antigen](https://github.com/zsh-users/antigen) (which is 
 antigen bundle https://github.com/sakshamsharma/zpyi zpyi.zsh
 ```
 
+# Uninstallation
+```
+rm -rf ~/.zpyi
+sed -i '/zpyi.zsh/d' ~/.zshrc
+```
+
 # TODO
 * Add support for querying for missing packages
