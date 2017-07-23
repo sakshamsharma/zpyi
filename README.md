@@ -96,6 +96,7 @@ The installation script is concise enough:
 cd ~
 git clone https://github.com/sakshamsharma/zpyi ~/.zpyi
 echo "source ~/.zpyi/zpyi.zsh" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 If you feel lazy, this works too:
