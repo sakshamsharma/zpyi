@@ -47,11 +47,15 @@ command_not_found_handler() {
     # and still work.
     zpyi_dir=$(dirname ${(%):-%x})
 
-    if [ "$#" -ne 1 ]; then
-        python ${zpyi_dir}/zpyi.py $INPUT_PIPE $ARGS_PIPE
-        rm $ARGS_PIPE
+    if [[ -a ${zpyi_dir}/zpyi.py ]]; then
+        if [ "$#" -ne 1 ]; then
+            python ${zpyi_dir}/zpyi.py $INPUT_PIPE $ARGS_PIPE
+            rm $ARGS_PIPE
+        else
+            python ${zpyi_dir}/zpyi.py $INPUT_PIPE
+        fi
     else
-        python ${zpyi_dir}/zpyi.py $INPUT_PIPE
+        echo "Couldn't find ${zpyi_dir}/zpyi.py...Downloading again might help."
     fi
 
     # Optionally uncomment the below lines if
