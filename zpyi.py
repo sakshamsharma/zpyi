@@ -8,6 +8,7 @@
 import sys
 import os
 from math import *
+import subprocess
 
 if 'ZPYI_IMPORTS' in os.environ:
     for module in os.environ['ZPYI_IMPORTS'].split(','):
@@ -38,10 +39,17 @@ code = ([ i for i in codestr if i.strip() ])
 # Use try catch to return only after cleanup
 try:
     if len(code) == 1 and not code[0].startswith('print'):
+
+        # Call to import script to check if it's a package and installable
+        _import_call_result = subprocess.call(['./import.sh', code[0]])
+
+        # If the above call exits with non-zero status than the usual eval
+        # is called so that
         # Commands like:
         # '1+2'
-        # Also should display output
-        print (eval(code[0]))
+        # Also display output
+        if _import_call_result != 0:
+            print (eval(code[0]))
     else:
         # Bigger commands
         # 'a = 2
